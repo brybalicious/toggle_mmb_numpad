@@ -6,12 +6,14 @@ bl_info = {
     "location": "Edit > Operator Search",
     "description": "Operator for toggling the 'Emulate 3 Button Mouse' & 'Emulate Numpad' options",
     "warning": "",
-    "wiki_url": "",
+    "wiki_url": "https://github.com/brybalicious/toggle_mmb_numpad/wiki",
     "category": "Preferences"}
 
 import bpy
 import rna_keymap_ui
 from bpy.utils import register_class, unregister_class
+
+# Surfacing the Operators
 
 class PREFERENCES_OT_toggle_emulate_3_button_mouse(bpy.types.Operator):
     bl_idname = "preferences.toggle_emulate_3_button_mouse"
@@ -23,18 +25,19 @@ class PREFERENCES_OT_toggle_emulate_3_button_mouse(bpy.types.Operator):
 
 class PREFERENCES_OT_toggle_emulate_numpad(bpy.types.Operator):
     bl_idname = "preferences.toggle_numpad"
-    bl_label = "Toggle 'Numpad'"
+    bl_label = "Toggle 'Emulate Numpad'"
 
     def execute(self, context):
         bpy.context.preferences.inputs.use_emulate_numpad = not bpy.context.preferences.inputs.use_emulate_numpad
         return {"FINISHED"}
 
 
+# Keymap Code
 
 keys = {"MENU": [{"label": "Toggle Emulate 3 Button Mouse",
-                #   "region_type": "WINDOW",
-                #   "map_type": "KEYBOARD",
-                  "keymap": "Emulate MMB Toggle",
+                  "region_type": "WINDOW",
+                  "map_type": "KEYBOARD",
+                  "keymap": "User Interface",
                   "idname": "preferences.toggle_emulate_3_button_mouse",
                   "type": "QUOTE",
                   "ctrl": False,
@@ -43,10 +46,10 @@ keys = {"MENU": [{"label": "Toggle Emulate 3 Button Mouse",
                   "oskey": False,
                   "value": "PRESS"
                   },
-                {"label": "Toggle Numpad",
-                #   "region_type": "WINDOW",
-                #   "map_type": "KEYBOARD",
-                  "keymap": "Emulate Numpad Toggle",
+                {"label": "Toggle Emulate Numpad",
+                  "region_type": "WINDOW",
+                  "map_type": "KEYBOARD",
+                  "keymap": "User Interface",
                   "idname": "preferences.toggle_numpad",
                   "type": "SEMI_COLON",
                   "ctrl": False,
@@ -72,11 +75,11 @@ def register_keymaps(keylists):
         for item in keylist:
             keymap = item.get("keymap")
             space_type = item.get("space_type", "EMPTY")
-            # region_type = item.get("region_type", "WINDOW")
+            region_type = item.get("region_type", "WINDOW")
 
             if keymap:
-                # km = kc.keymaps.new(name=keymap, space_type=space_type, region_type=region_type)
-                km = kc.keymaps.new(name=keymap, space_type=space_type)
+                km = kc.keymaps.new(name=keymap, space_type=space_type, region_type=region_type)
+                # km = kc.keymaps.new(name=keymap, space_type=space_type)
 
                 if km:
                     idname = item.get("idname")
