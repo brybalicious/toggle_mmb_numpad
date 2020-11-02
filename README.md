@@ -25,10 +25,7 @@ This addon makes it simple and easy to set up Blender for e.g. a lightweight por
 <!-- https://docs.blender.org/api/current/bpy.types.KeyMapItem.html?highlight=key%20name#bpy.types.KeyMapItem.name -->
 <!-- https://devtalk.blender.org/t/official-keymap-example-does-not-work/9032/6 -->
 
-For Keymaps to show in its corresponding location in the [Edit >> Preferences >> Keymap] ui, keymap name must be one of the following 224 strings (no number), surrounded by quotes, spat out by blender scripting console when running:
-    ```import bpy
-    for i, km in enumerate(bpy.context.window_manager.keyconfigs.default.keymaps):
-        print(f"{i}\t{km.name}")```
+For Keymaps to show in its corresponding location in the [Edit >> Preferences >> Keymap] ui, keymap name must be one of the following 224 strings (no number), surrounded by quotes:
 
 
 0    Window
@@ -256,6 +253,12 @@ For Keymaps to show in its corresponding location in the [Edit >> Preferences >>
 222    Sequencer Tool: Blade
 223    Sequencer Tool: Sample
 
+- The above References are spat out by blender scripting console when running:
+    ```import bpy
+    for i, km in enumerate(bpy.context.window_manager.keyconfigs.default.keymaps):
+        print(f"{i}\t{km.name}")```
+
+- Note, these refer to what context one must be in, for key presses to actually activate. If, for example "User Interface", the hotkey will only activate anything when the cursor is hovering over a user interface. If, for example "Window", the hotkey will activate anywhere within the Blender application window
 
 
 ###Region Types
