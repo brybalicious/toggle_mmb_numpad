@@ -14,6 +14,7 @@ import rna_keymap_ui
 from bpy.utils import register_class, unregister_class
 
 # Surfacing the Operators
+# They can now be looked up via their bl_label attribute with the search function on default hotkey F3
 
 class PREFERENCES_OT_toggle_emulate_3_button_mouse(bpy.types.Operator):
     bl_idname = "preferences.toggle_emulate_3_button_mouse"
@@ -34,8 +35,23 @@ class PREFERENCES_OT_toggle_emulate_numpad(bpy.types.Operator):
 
 # Keymap Code
 
+# First, set up a dictionary of key mappings.
+
+# "TEMPLATE": [{"label": "Human readable name of keymap in Blender Keymap UI",
+#               "region_type": "WINDOW", //Default is WINDOW (optional)
+#               "space_type", "EMPTY", //Default is EMPTY
+#               "map_type": "KEYBOARD", //Device to be used (optional)
+#               "keymap": "Window", //Name to be chosen from declared list of keymap names
+#               "idname": ..., //Specific reference to operator from blender API
+#               "type": "", //Key type identifier - choose a specific keyboard button or mouse button, etc...
+#               "ctrl": False, //Combination keys for compound hotkeys (optional)
+#               ...
+#               "value": "PRESS"}, //Whether key will be held, pressed, etc...
+#              {...}]
+
 keys = {"MENU": [{"label": "Toggle Emulate 3 Button Mouse",
                   "region_type": "WINDOW",
+                  "space_type", "EMPTY",
                   "map_type": "KEYBOARD",
                   "keymap": "Window",
                   "idname": "preferences.toggle_emulate_3_button_mouse",
@@ -48,6 +64,7 @@ keys = {"MENU": [{"label": "Toggle Emulate 3 Button Mouse",
                   },
                 {"label": "Toggle Emulate Numpad",
                   "region_type": "WINDOW",
+                  "space_type", "EMPTY",
                   "map_type": "KEYBOARD",
                   "keymap": "Window",
                   "idname": "preferences.toggle_numpad",
@@ -59,12 +76,13 @@ keys = {"MENU": [{"label": "Toggle Emulate 3 Button Mouse",
                   "value": "PRESS"
                   }]}
 
-
+# Define a function to get a list of key mappings, 'keylists'
 def get_keys():
     keylists = []
     keylists.append(keys["MENU"])
     return keylists
-        
+
+# Define a function to register the key mappings templated in the dict as keymaps, using the constructor kc.keymaps.new()        
 def register_keymaps(keylists):
     wm = bpy.context.window_manager
     kc = wm.keyconfigs.addon
@@ -103,6 +121,7 @@ def register_keymaps(keylists):
                         keymaps.append((km, kmi))
     return keymaps
 
+# Define a function to unregister the keymaps
 def unregister_keymaps(keymaps):
     for km, kmi in keymaps:
         km.keymap_items.remove(kmi)

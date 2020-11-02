@@ -18,3 +18,5 @@ This addon makes it simple and easy to set up Blender for e.g. a lightweight por
 - Soon to add visual indicator of toggle status so you can *free your mind* for imagination
 
 -------------------------------------------------------------------------
+
+### Please Share
