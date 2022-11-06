@@ -16,12 +16,22 @@ from bpy.utils import register_class, unregister_class
 # Surfacing the Operators
 # They can now be looked up via their bl_label attribute with the search function on default hotkey F3
 
+# Helper metod to let the user know at what state the emulation is being toggled to
+def message_user(name, isTrue):
+    message = ("%s: " %(name.bl_label))
+    if isTrue:
+        message += "On"
+    else:
+        message += "Off"
+    name.report({'INFO'}, message)
+
 class PREFERENCES_OT_toggle_emulate_3_button_mouse(bpy.types.Operator):
     bl_idname = "preferences.toggle_emulate_3_button_mouse"
     bl_label = "Toggle 'Emulate 3 Button Mouse'"
 
     def execute(self, context):
         context.preferences.inputs.use_mouse_emulate_3_button = not context.preferences.inputs.use_mouse_emulate_3_button
+        message_user(self, context.preferences.inputs.use_mouse_emulate_3_button)
         return {"FINISHED"}
 
 class PREFERENCES_OT_toggle_emulate_numpad(bpy.types.Operator):
@@ -30,6 +40,7 @@ class PREFERENCES_OT_toggle_emulate_numpad(bpy.types.Operator):
 
     def execute(self, context):
         bpy.context.preferences.inputs.use_emulate_numpad = not bpy.context.preferences.inputs.use_emulate_numpad
+        message_user(self, bpy.context.preferences.inputs.use_emulate_numpad)
         return {"FINISHED"}
 
 
