@@ -1,8 +1,8 @@
 # Blender Addon: Toggle Emulate MMB & Numpad
 
 <!-- # toggle_emulate_mmb_numpad -->
-This addon makes it simple and easy to set up Blender for e.g. a lightweight portable setup. Perfect with a laptop 2-in-1 and stylus pen, where Numpad and a Mouse with or without Middle Mouse Button are lacking entirely.
 
+This addon makes it simple and easy to set up Blender for e.g. a lightweight portable setup. Perfect with a laptop 2-in-1 and stylus pen, where Numpad and a Mouse with or without Middle Mouse Button are lacking entirely.
 
 - `;` toggles the number keys to become Numpad Keys for viewport orientation and view snapping
 - `'` or `"` toggles Middle Mouse Button emulation, so the stylus can be used with Alt (or one of its buttons mapped to Alt) for orbiting and 3D viewport navigation
@@ -15,8 +15,8 @@ This addon makes it simple and easy to set up Blender for e.g. a lightweight por
 
 - Far easier than setting up AutoHotkey for stylus buttons. The keymap seems fairly unused in Blender at present
 
-- Soon to add visual indicator of toggle status so you can *free your mind* for imagination
+- Thanks to @ericwomer for adding visual indicator of toggle statuses so you can _free your mind_ for imagination
 
--------------------------------------------------------------------------
+---
 
 ### Please Share

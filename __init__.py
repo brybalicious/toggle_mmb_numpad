@@ -1,8 +1,8 @@
 bl_info = {
     "name": "Toggle 'Emulate 3 Button Mouse' & 'Emulate Numpad'",
     "author": "brybalicious courtesy Robert Guetzkow",
-    "version": (1, 0),
-    "blender": (2, 90, 1),
+    "version": (1, 1),
+    "blender": (3, 3, 1),
     "location": "Edit > Operator Search",
     "description": "Operator for toggling the 'Emulate 3 Button Mouse' & 'Emulate Numpad' options",
     "warning": "",
@@ -16,7 +16,7 @@ from bpy.utils import register_class, unregister_class
 # Surfacing the Operators
 # They can now be looked up via their bl_label attribute with the search function on default hotkey F3
 
-# Helper metod to let the user know at what state the emulation is being toggled to
+# Helper method to let the user know what state the emulation is being toggled to
 def message_user(name, isTrue):
     message = ("%s: " %(name.bl_label))
     if isTrue:
